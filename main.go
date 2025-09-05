@@ -1,4 +1,4 @@
-1package main
+package main
 
 import (
 	"log"
@@ -16,7 +16,7 @@ func main() {
 	if region == "" {
 		region = "us-east-1"
 	}
-	
+
 	tableName := os.Getenv("DYNAMODB_TABLE_NAME")
 	if tableName == "" {
 		tableName = "todos"

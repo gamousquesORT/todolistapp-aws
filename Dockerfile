@@ -7,7 +7,10 @@ RUN go mod download
 
 COPY . .
 
-RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
+ARG GOOS=linux
+ARG GOARCH=amd64
+
+RUN CGO_ENABLED=0 GOOS=$GOOS GOARCH=$GOARCH go build -o main .
 
 FROM alpine:latest
 
