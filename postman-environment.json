@@ -1,0 +1,19 @@
+{
+  "id": "todo-api-local",
+  "name": "Todo API Local Environment",
+  "values": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "description": "Local development server URL",
+      "enabled": true
+    },
+    {
+      "key": "todo_id",
+      "value": "",
+      "description": "ID of a todo item for testing (set this after creating a todo)",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}

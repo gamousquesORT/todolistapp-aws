@@ -1,0 +1,193 @@
+{
+  "info": {
+    "name": "Todo List API",
+    "description": "REST API for managing todo items with local DynamoDB",
+    "version": "1.0.0",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Check if the API server is running"
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Todos",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/todos",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "todos"]
+        },
+        "description": "Retrieve all todo items from DynamoDB"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Todo",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Learn Go\",\n  \"description\": \"Study Go programming language and build REST APIs\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/todos",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "todos"]
+        },
+        "description": "Create a new todo item with title and description"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Todo - Sample 2",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Build Docker Container\",\n  \"description\": \"Containerize the Go application with DynamoDB Local\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/todos",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "todos"]
+        },
+        "description": "Create another sample todo item"
+      },
+      "response": []
+    },
+    {
+      "name": "Create Todo - No Title (Error)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"description\": \"This should fail because title is required\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/todos",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "todos"]
+        },
+        "description": "Test validation - should return 400 error because title is required"
+      },
+      "response": []
+    },
+    {
+      "name": "Get Todo by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "todos", "{{todo_id}}"]
+        },
+        "description": "Get a specific todo item by its ID (replace {{todo_id}} with actual ID)"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Todo - Mark Complete",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"completed\": true\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "todos", "{{todo_id}}"]
+        },
+        "description": "Mark a todo item as completed"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Todo - Change Title and Description",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Master Go Programming\",\n  \"description\": \"Become proficient in Go language and microservices architecture\",\n  \"completed\": false\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "todos", "{{todo_id}}"]
+        },
+        "description": "Update title, description and completion status of a todo item"
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Todo",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/v1/todos/{{todo_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "todos", "{{todo_id}}"]
+        },
+        "description": "Delete a todo item by ID"
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8080",
+      "description": "Base URL for the Todo API"
+    },
+    {
+      "key": "todo_id",
+      "value": "1725558642699000000",
+      "description": "Sample todo ID (replace with actual ID from create response)"
+    }
+  ]
+}
